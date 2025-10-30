@@ -6,6 +6,7 @@ import {
   ChartWrap,
   Loading,
   Empty,
+  ExportButton,
 } from "../styles/LowMarginProductsStyles";
 import {
   ResponsiveContainer,
@@ -28,17 +29,16 @@ function LowMarginProducts({ start, end }) {
         params: { start, end, cost_pct: 0.65 },
       });
 
-      console.log(
-        "RAW low-margin response sample:",
-        (res.data.data || []).slice(0, 8)
-      );
-
       const items = (res.data.data || []).map((item) => {
         const parseNum = (val) => {
-          if (val === null || val === undefined) return null;
+          if (val == null) return null;
           if (typeof val === "number") return val;
           if (typeof val === "string") {
-            const cleaned = val.replace(",", ".").replace(/[^\d.-]/g, "");
+            const cleaned = val
+              .trim()
+              .replace(/\s/g, "")
+              .replace(",", ".")
+              .replace(/[^\d.-]/g, "");
             const num = parseFloat(cleaned);
             return isNaN(num) ? null : num;
           }
@@ -51,7 +51,6 @@ function LowMarginProducts({ start, end }) {
         const totalSold = parseNum(item.total_sold);
         const rawMargin = parseNum(item.margin_percent);
 
-        // Escolhe valores usados
         const avgPriceUsed =
           avgPrice && avgPrice > 0
             ? avgPrice
@@ -67,7 +66,6 @@ function LowMarginProducts({ start, end }) {
             ? avgPriceUsed * costPct
             : null;
 
-        // Cálculo de margem seguro
         let marginPercent = 0;
         if (avgPriceUsed && avgPriceUsed > 0 && avgCostUsed !== null) {
           marginPercent = ((avgPriceUsed - avgCostUsed) / avgPriceUsed) * 100;
@@ -75,7 +73,6 @@ function LowMarginProducts({ start, end }) {
           marginPercent = rawMargin <= 1 ? rawMargin * 100 : rawMargin;
         }
 
-        // Corrige margens absurdas
         const marginClamped = Number(marginPercent.toFixed(2));
 
         return {
@@ -86,9 +83,6 @@ function LowMarginProducts({ start, end }) {
         };
       });
 
-      console.log("PROCESSED low-margin sample:", items.slice(0, 8));
-
-      // Ordena da menor margem para a maior
       const sorted = [...items].sort(
         (a, b) => a.margin_percent - b.margin_percent
       );
@@ -105,10 +99,69 @@ function LowMarginProducts({ start, end }) {
     fetchData();
   }, [start, end]);
 
+  const handleExportCSV = () => {
+    if (!data || !data.length) return;
+
+    const header = [
+      "Produto",
+      "Preço Médio (R$)",
+      "Custo Médio (R$)",
+      "Margem (%)",
+      "Total Vendido",
+      "Receita Total (R$)",
+    ];
+
+    const rows = data.map((item) => {
+      const avgPrice = item.avg_price ?? item._avg_price_used ?? 0;
+      const avgCost = item.avg_cost ?? item._avg_cost_used ?? 0;
+      const margin = item.margin_percent ?? 0;
+      const totalSold = item.total_sold ?? "";
+      const totalRevenue = item.total_revenue ?? 0;
+
+      return [
+        item.product_name ?? "",
+        Number(avgPrice).toFixed(2).replace(".", ","),
+        Number(avgCost).toFixed(2).replace(".", ","),
+        `${Number(margin).toFixed(2).replace(".", ",")} %`,
+        totalSold,
+        Number(totalRevenue).toLocaleString("pt-BR", {
+          minimumFractionDigits: 2,
+        }),
+      ];
+    });
+
+    console.log("CSV rows preview:", rows.slice(0, 10));
+
+    const escapeCSV = (value) => {
+      if (value === null || value === undefined) return "";
+      const str = String(value);
+      if (/[;"\r\n]/.test(str)) return `"${str.replace(/"/g, '""')}"`;
+      return str;
+    };
+
+    const lines = [header, ...rows]
+      .map((r) => r.map(escapeCSV).join(";"))
+      .join("\r\n");
+    const csvWithBom = "\uFEFF" + lines;
+
+    const blob = new Blob([csvWithBom], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "produtos_baixa_margem.csv";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <Card>
       <HeaderRow>
         <h3>Produtos com Menor Margem</h3>
+        {!loading && data.length > 0 && (
+          <ExportButton onClick={handleExportCSV}>📤 Exportar CSV</ExportButton>
+        )}
       </HeaderRow>
 
       <ChartWrap>

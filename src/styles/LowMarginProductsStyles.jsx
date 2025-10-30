@@ -37,3 +37,19 @@ export const Empty = styled.div`
   color: var(--text-secondary);
   font-size: 14px;
 `;
+
+export const ExportButton = styled.button`
+  background: #f97316;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #ea580c;
+  }
+`;
