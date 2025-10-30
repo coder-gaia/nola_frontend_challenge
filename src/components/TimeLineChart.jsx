@@ -10,10 +10,9 @@ import {
   Tooltip,
 } from "recharts";
 
-function TimeLineChart({ data }) {
+function Timelinechart({ data }) {
   const parseBRLToNumber = (str) => {
     if (!str) return 0;
-    // remove R$, espaços, pontos de milhar e troca vírgula por ponto
     return Number(str.replace(/[R$\s.]/g, "").replace(",", "."));
   };
 
@@ -64,4 +63,4 @@ function TimeLineChart({ data }) {
   );
 }
 
-export default TimeLineChart;
+export default Timelinechart;

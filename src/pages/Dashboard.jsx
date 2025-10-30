@@ -5,7 +5,6 @@ import Filters from "../components/Filters";
 import KpiCard from "../components/KpiCard";
 import TopProductsChart from "../components/TopProductsChart";
 import TopChannelsCart from "../components/TopChannelsCart";
-import TimelineChart from "../components/TimelineChart";
 import TopStoresChart from "../components/TopStoresChart";
 import FinancialOverview from "../components/FinancialOverview";
 import api from "../services/api";
@@ -16,6 +15,7 @@ import DeliveryPerformance from "../components/DeliveryPerfomance";
 import InsightsCard from "../components/InsightCard";
 import { layout as initialLayout } from "../config/dashboardLayout.json";
 import LayoutEditor from "../components/LayoutEditor";
+import Timelinechart from "../components/TimeLineChart";
 
 function Dashboard() {
   const defaultStart = import.meta.env.VITE_DEFAULT_START;
@@ -190,7 +190,7 @@ function Dashboard() {
       case "timeline_channels":
         return (
           <ChartsRow key="timeline_channels">
-            <TimelineChart data={timeline} />
+            <Timelinechart data={timeline} />
             <TopChannelsCart data={topChannels} />
           </ChartsRow>
         );
