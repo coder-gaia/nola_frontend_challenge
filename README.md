@@ -125,5 +125,5 @@ Vercel, conforme descrito acima.
 
 ## 👨‍💻 Autor
 
-Desenvolvido por **Alexandre Silva**\
+Desenvolvido por **Alexandre Gaia da Silva**\
 Desafio **God Level Coder -- Nola Challenge**
