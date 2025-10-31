@@ -115,6 +115,11 @@ Vercel, conforme descrito acima.
   componente `LayoutEditor`.
 - Todos os gráficos e KPIs são renderizados dinamicamente conforme os
   filtros aplicados.
+- O frontend, backend e banco de dados foram configurados para operar sobre um volume realista de dados — aproximadamente 500 mil registros, representando 6 meses de operação comercial
+
+  Por conta disso, a primeira renderização e as trocas de filtros podem levar de 1 a 2 minutos, dependendo do desempenho do servidor e da latência entre as instâncias da aplicação (Render e Vercel).
+
+  Esse comportamento é esperado em ambientes de demonstração com carga completa, refletindo o custo computacional de consultas agregadas e cálculos analíticos sobre grandes volumes de dados.
 
 ---
 
