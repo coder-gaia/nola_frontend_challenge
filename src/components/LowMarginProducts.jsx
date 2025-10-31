@@ -23,6 +23,7 @@ function LowMarginProducts({ start, end }) {
   const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
+    if (!start || !end) return;
     setLoading(true);
     try {
       const res = await api.get("/analytics/low-margin-products", {
@@ -97,7 +98,7 @@ function LowMarginProducts({ start, end }) {
   };
 
   useEffect(() => {
-    fetchData();
+    if (start && end) fetchData();
   }, [start, end]);
 
   const handleExportCSV = () => {
