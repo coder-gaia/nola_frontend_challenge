@@ -1,16 +1,124 @@
-# React + Vite
+# 📊 Nola Analytics -- Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação React responsável pela interface do dashboard analítico do
+projeto **Nola Analytics**, integrando-se com o backend hospedado no
+Render.
 
-Currently, two official plugins are available:
+------------------------------------------------------------------------
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tecnologias Utilizadas
 
-## React Compiler
+-   **React 19**
+-   **Vite**
+-   **Styled Components**
+-   **Axios**
+-   **Recharts**
+-   **Testing Library (Jest + Vitest)**
+-   **ESLint**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+------------------------------------------------------------------------
 
-## Expanding the ESLint configuration
+## 📁 Estrutura de Pastas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+    nola_frontend/
+    ├── src/
+    │   ├── components/              # Componentes reutilizáveis (Header, Filters, KpiCard, etc)
+    │   ├── pages/
+    │   │   └── Dashboard.jsx        # Página principal do dashboard
+    │   ├── services/
+    │   │   └── api.js               # Configuração base do Axios
+    │   ├── config/
+    │   │   └── dashboardLayout.json # Layout padrão dos blocos do dashboard
+    │   ├── styles/
+    │   │   └── DashboardStyles.js   # Estilos base com styled-components
+    │   └── main.jsx                 # Ponto de entrada do app
+    ├── .env                         # Variáveis de ambiente locais
+    ├── package.json
+    ├── vite.config.js
+    └── README.md
+
+------------------------------------------------------------------------
+
+## ⚙️ Configuração do Ambiente
+
+### 🧩 Variáveis de ambiente
+
+#### Em desenvolvimento (`.env.local`)
+
+``` env
+VITE_API_URL=http://localhost:3001/api
+VITE_DEFAULT_START=2025-05-01
+VITE_DEFAULT_END=2025-10-01
+```
+
+#### Em produção (Vercel)
+
+``` env
+VITE_API_URL=https://nola-challenge.onrender.com/api
+VITE_DEFAULT_START=2025-05-01
+VITE_DEFAULT_END=2025-10-01
+```
+
+------------------------------------------------------------------------
+
+## 🧱 Instalação e Execução
+
+1️⃣ **Instalar dependências**
+
+``` bash
+npm install
+```
+
+2️⃣ **Executar o projeto em ambiente de desenvolvimento**
+
+``` bash
+npm run dev
+```
+
+3️⃣ **Rodar os testes unitários com cobertura**
+
+``` bash
+npm run test:coverage
+```
+
+4️⃣ **Build de produção**
+
+``` bash
+npm run build
+```
+
+------------------------------------------------------------------------
+
+## 🧪 Testes
+
+Foram implementados testes unitários para todos os principais
+componentes da aplicação (Cards, Charts, Filtros e Layout).\
+O ambiente de testes utiliza **Vitest + Testing Library**.
+
+------------------------------------------------------------------------
+
+## 🌐 Deploy
+
+O deploy do frontend foi realizado na **Vercel**.
+
+**URL de Produção:** <https://nola-analytics.vercel.app>
+
+As variáveis de ambiente foram configuradas diretamente no painel da
+Vercel, conforme descrito acima.
+
+------------------------------------------------------------------------
+
+## 🧭 Observações
+
+-   O frontend consome os endpoints expostos pelo backend no Render.
+-   O layout é totalmente dinâmico e pode ser editado através do
+    componente `LayoutEditor`.
+-   Todos os gráficos e KPIs são renderizados dinamicamente conforme os
+    filtros aplicados.
+
+------------------------------------------------------------------------
+
+## 👨‍💻 Autor
+
+Desenvolvido por **Alexandre Silva**\
+Desafio **God Level Coder -- Nola Challenge**
