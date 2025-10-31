@@ -4,19 +4,19 @@ Aplicação React responsável pela interface do dashboard analítico do
 projeto **Nola Analytics**, integrando-se com o backend hospedado no
 Render.
 
-------------------------------------------------------------------------
+---
 
 ## 🚀 Tecnologias Utilizadas
 
--   **React 19**
--   **Vite**
--   **Styled Components**
--   **Axios**
--   **Recharts**
--   **Testing Library (Jest + Vitest)**
--   **ESLint**
+- **React 19**
+- **Vite**
+- **Styled Components**
+- **Axios**
+- **Recharts**
+- **Testing Library (Jest + Vitest)**
+- **ESLint**
 
-------------------------------------------------------------------------
+---
 
 ## 📁 Estrutura de Pastas
 
@@ -37,7 +37,7 @@ Render.
     ├── vite.config.js
     └── README.md
 
-------------------------------------------------------------------------
+---
 
 ## ⚙️ Configuração do Ambiente
 
@@ -45,7 +45,7 @@ Render.
 
 #### Em desenvolvimento (`.env.local`)
 
-``` env
+```env
 VITE_API_URL=http://localhost:3001/api
 VITE_DEFAULT_START=2025-05-01
 VITE_DEFAULT_END=2025-10-01
@@ -53,41 +53,41 @@ VITE_DEFAULT_END=2025-10-01
 
 #### Em produção (Vercel)
 
-``` env
+```env
 VITE_API_URL=https://nola-challenge.onrender.com/api
 VITE_DEFAULT_START=2025-05-01
 VITE_DEFAULT_END=2025-10-01
 ```
 
-------------------------------------------------------------------------
+---
 
 ## 🧱 Instalação e Execução
 
 1️⃣ **Instalar dependências**
 
-``` bash
+```bash
 npm install
 ```
 
 2️⃣ **Executar o projeto em ambiente de desenvolvimento**
 
-``` bash
+```bash
 npm run dev
 ```
 
 3️⃣ **Rodar os testes unitários com cobertura**
 
-``` bash
+```bash
 npm run test:coverage
 ```
 
 4️⃣ **Build de produção**
 
-``` bash
+```bash
 npm run build
 ```
 
-------------------------------------------------------------------------
+---
 
 ## 🧪 Testes
 
@@ -95,28 +95,28 @@ Foram implementados testes unitários para todos os principais
 componentes da aplicação (Cards, Charts, Filtros e Layout).\
 O ambiente de testes utiliza **Vitest + Testing Library**.
 
-------------------------------------------------------------------------
+---
 
 ## 🌐 Deploy
 
 O deploy do frontend foi realizado na **Vercel**.
 
-**URL de Produção:** <https://nola-analytics.vercel.app>
+**URL de Produção:** <https://nola-frontend-gc1houej7-codergaias-projects.vercel.app/>
 
 As variáveis de ambiente foram configuradas diretamente no painel da
 Vercel, conforme descrito acima.
 
-------------------------------------------------------------------------
+---
 
 ## 🧭 Observações
 
--   O frontend consome os endpoints expostos pelo backend no Render.
--   O layout é totalmente dinâmico e pode ser editado através do
-    componente `LayoutEditor`.
--   Todos os gráficos e KPIs são renderizados dinamicamente conforme os
-    filtros aplicados.
+- O frontend consome os endpoints expostos pelo backend no Render.
+- O layout é totalmente dinâmico e pode ser editado através do
+  componente `LayoutEditor`.
+- Todos os gráficos e KPIs são renderizados dinamicamente conforme os
+  filtros aplicados.
 
-------------------------------------------------------------------------
+---
 
 ## 👨‍💻 Autor
 
