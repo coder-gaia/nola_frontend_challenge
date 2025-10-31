@@ -27,6 +27,7 @@ function LowMarginProducts({ start, end }) {
     try {
       const res = await api.get("/analytics/low-margin-products", {
         params: { start, end, cost_pct: 0.65 },
+        headers: { "Cache-Control": "no-cache" },
       });
 
       const items = (res.data.data || []).map((item) => {
