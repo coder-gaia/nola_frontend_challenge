@@ -106,6 +106,8 @@ O deploy do frontend foi realizado na **Vercel**.
 As variáveis de ambiente foram configuradas diretamente no painel da
 Vercel, conforme descrito acima.
 
+PS: O carregamento de todos elementos pode levar de 1 à 2 minutos devido ao alto volume de dados.
+
 ---
 
 ## 🧭 Observações
